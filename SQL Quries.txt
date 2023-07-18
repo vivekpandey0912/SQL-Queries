@@ -1,0 +1,12 @@
+-- create table in the Sql Database 
+create database employeeDetails;
+-- Use Database to start manipulation with data
+use employeeDetails;
+-- creating table with three fields
+create table employee
+(
+  id int,
+  name varchar(30),
+  age int
+  
+);
