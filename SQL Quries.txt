@@ -58,3 +58,85 @@ SELECT
 select substring(name, 1,3) from product;
 
 
+
+
+
+create database musicApplication;
+use musicApplication;
+
+create table songs
+(
+	songId int primary key,
+    songName varchar(30),
+    songDes varchar(150),
+    songLink varchar(150),
+    songGenere varchar(15),
+    songArtist varchar (20)
+);
+
+create table podcast
+(
+	podId int primary key,
+    podName varchar(30),
+    podDes varchar(150),
+    podGenere varchar(15),
+    podSpeaker varchar (20)
+);
+
+create table playList
+(
+	playlistId int primary key,
+	playlistName varchar(30),
+    songId int,
+    podId int,
+	FOREIGN KEY (songId) REFERENCES songs(songId),
+	FOREIGN KEY (podId) REFERENCES podcast(podId)
+);
+
+
+select * from songs;
+select * from podcast;
+
+select * from playlist;
+
+
+insert into podcast
+values
+(101,'pod1','Des1','genere1','artist1'),
+(102,'pod2','Des2','genere2','artist2'),
+(103,'pod3','Des3','genere3','artist3'),
+(104,'pod4','Des4','genere4','artist4'),
+(105,'pod5','Des5','genere5','artist5'),
+(106,'pod6','Des6','genere6','artist6'),
+(107,'pod7','Des7','genere7','artist7');
+
+
+
+
+insert into songs
+values
+(101,'Tere Bin1','Des1','link1','genere1','artist1'),
+(102,'Tere Bin2','Des2','link2','genere2','artist2'),
+(103,'Tere Bin3','Des3','link3','genere3','artist3'),
+(104,'Tere Bin4','Des4','link4','genere4','artist4'),
+(105,'Tere Bin5','Des5','link5','genere5','artist5'),
+(106,'Tere Bin6','Des6','link6','genere6','artist6'),
+(107,'Tere Bin7','Des7','link7','genere7','artist7');
+
+
+-- Inserting data into the playList table
+INSERT INTO playList (playlistId, playlistName, songId, podId)
+VALUES
+    (201, 'My Playlist 1', 101, 101), -- Song ID 101 and Podcast ID 101
+    (202, 'My Playlist 2', 103, 102), -- Song ID 103 and Podcast ID 102
+    (203, 'My Playlist 3', 105, 104); -- Song ID 105 and Podcast ID 104
+    
+    SELECT playList.playlistId, playList.playlistName, songs.songId, songs.songName, songs.songDes, songs.songLink, songs.songGenere, songs.songArtist
+FROM playList
+INNER JOIN songs ON playList.songId = songs.songId;
+
+  SELECT playList.playlistId, playList.playlistName, songs.songId, songs.songName, songs.songDes, songs.songLink, songs.songGenere, songs.songArtist
+FROM playList
+Left JOIN songs ON playList.songId = songs.songId;
+
+
